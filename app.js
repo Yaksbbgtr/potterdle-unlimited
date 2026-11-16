@@ -102,7 +102,7 @@ const store = {
 };
 
 const settings = Object.assign(
-  { series: SERIES.slice(), theme: "system", skin: "classic", colorblind: false, reduceMotion: false, seenHelp: false },
+  { series: SERIES.slice(), theme: "system", colorblind: false, reduceMotion: false, seenHelp: false },
   store.get("settings", {}),
 );
 // Drop any series that no longer exist; fall back to everything if empty.
@@ -233,6 +233,7 @@ function makeGuess(id) {
 
   if (won) {
     row.classList.add("win");
+    setTimeout(() => window.fx?.burst(), settings.reduceMotion ? 0 : 1100);
     setTimeout(showEnd, settings.reduceMotion ? 50 : 1300);
   }
 }
@@ -309,10 +310,8 @@ function updateChrome() {
   $("#btn-giveup").disabled = game.over;
   $("#btn-new").textContent = game.over ? "Next character" : "New character";
   document.body.classList.toggle("cb", settings.colorblind);
-  if (settings.theme === "system") document.documentElement.removeAttribute("data-theme");
-  else document.documentElement.dataset.theme = settings.theme;
-  document.documentElement.dataset.skin = settings.skin || "classic";
   document.body.classList.toggle("reduce-motion", settings.reduceMotion);
+  window.fx?.setPaused(settings.reduceMotion);
 }
 
 function showEnd() {
@@ -489,22 +488,10 @@ function renderSettings() {
       return el("label", {}, cb, el("span", {}, s), el("span", { class: "count" }, String(countIn(s))));
     }),
   );
-  $("#opt-theme").value = settings.theme;
-  $("#opt-skin").value = settings.skin || "classic";
   $("#opt-cb").checked = settings.colorblind;
   $("#opt-motion").checked = settings.reduceMotion;
 }
 
-$("#opt-theme").addEventListener("change", (e) => {
-  settings.theme = e.target.value;
-  saveSettings();
-  updateChrome();
-});
-$("#opt-skin").addEventListener("change", (e) => {
-  settings.skin = e.target.value;
-  saveSettings();
-  updateChrome();
-});
 $("#opt-cb").addEventListener("change", (e) => {
   settings.colorblind = e.target.checked;
   saveSettings();
