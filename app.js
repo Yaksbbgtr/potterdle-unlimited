@@ -61,13 +61,15 @@ function compareName(a, b) {
 // Blood status: [species, status], e.g. ["Human", "Half-blood"] or ["House-elf"].
 function compareBlood(a, b) {
   const speciesMatches = a[0] === b[0];
-  const statusMatches = a[1] === b[1];
-  if (speciesMatches && statusMatches) return "Full";
-  if (speciesMatches || (statusMatches && a[1] !== undefined && a[1] !== "Unknown")) return "Partial";
+  // "Unknown" isn't real information, so two unknown statuses don't count as a match.
+  const statusMatches = a[1] === b[1] && a[1] !== "Unknown";
+  if (speciesMatches && (statusMatches || (a[1] === undefined && b[1] === undefined))) return "Full";
+  if (speciesMatches || (statusMatches && a[1] !== undefined)) return "Partial";
   return "None";
 }
 
 function compare(guess, target) {
+  if (guess === target) return Array(6).fill("Full");
   return [
     compareName(guess.name, target.name),
     guess.house === target.house ? "Full" : "None",
@@ -328,6 +330,9 @@ function showEnd() {
     ["Affiliation", listOrDash(t.affiliation)],
     ["Family", listOrDash(t.family)],
   ]) facts.append(el("dt", {}, k), el("dd", {}, v));
+  const pat = $("#end-patronus");
+  pat.hidden = !(game.won && t.patronus);
+  if (!pat.hidden) $("#end-patronus-animal").textContent = t.patronus;
   $("#end-line").textContent = game.won
     ? `Solved in ${n} ${n === 1 ? "guess" : "guesses"}. Streak: ${stats.streak}.`
     : `Gave up after ${n} ${n === 1 ? "guess" : "guesses"}.`;

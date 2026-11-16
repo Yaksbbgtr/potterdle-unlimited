@@ -363,6 +363,30 @@ input[type="checkbox"] { accent-color: var(--full); width: 16px; height: 16px; }
 .facts dt { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding-top: 2px; }
 .facts dd { margin: 0; }
 
+.patronus {
+  position: relative; margin: -4px auto 16px; padding: 14px 16px 12px; max-width: 340px;
+  border-radius: 14px; display: grid; gap: 2px;
+  background: radial-gradient(ellipse at center, rgba(190, 220, 255, .28), rgba(190, 220, 255, .06) 70%);
+  border: 1px solid rgba(190, 220, 255, .45);
+  animation: patronus-in 1.2s ease-out both;
+}
+.patronus[hidden] { display: none; }
+.patronus-spell { font-size: 12px; font-style: italic; color: var(--muted); }
+.patronus-animal {
+  font-family: Cinzel, serif; font-size: 26px; font-weight: 700; color: #cfe6ff;
+  text-shadow: 0 0 8px rgba(160, 205, 255, .9), 0 0 22px rgba(120, 180, 255, .6);
+}
+.patronus-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .patronus-animal { color: #2f5f9a; text-shadow: 0 0 10px rgba(120, 180, 255, .7); }
+}
+:root[data-theme="light"] .patronus-animal { color: #2f5f9a; text-shadow: 0 0 10px rgba(120, 180, 255, .7); }
+@keyframes patronus-in {
+  from { opacity: 0; transform: scale(.85); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+.reduce-motion .patronus { animation: none; }
+
 /* ---------- add character ---------- */
 .url-row { display: flex; gap: 8px; }
 .url-row input, .fields input {
