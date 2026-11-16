@@ -498,39 +498,30 @@ body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after 
   margin: 0; padding: 0; border: 0; background: transparent; overflow: hidden; pointer-events: none;
 }
 .pat-runner {
-  position: absolute; left: 0; top: 30vh;
+  position: absolute; left: 0; top: 26vh;
   animation: pat-run 3.2s cubic-bezier(.35, .1, .6, .95) forwards;
 }
 .pat-body {
-  width: min(46vw, 260px);
-  animation: pat-bound .5s ease-in-out infinite;
-  filter: drop-shadow(0 0 6px rgba(200, 228, 255, .95)) drop-shadow(0 0 22px rgba(120, 180, 255, .7));
+  width: min(70vw, 380px);
+  animation: pat-bound .55s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(170, 210, 255, .8)) drop-shadow(0 0 30px rgba(120, 180, 255, .5));
 }
-.pat-deer { display: block; width: 100%; height: auto; overflow: visible; fill: #e4f1ff; stroke: #e4f1ff; opacity: .88; }
-.pat-deer > ellipse, .pat-deer > path, .pat-deer g > ellipse { stroke: none; }
-.pat-legs-front { transform-box: view-box; transform-origin: 132px 98px; animation: pat-legs-f .5s ease-in-out infinite; }
-.pat-legs-back { transform-box: view-box; transform-origin: 70px 98px; animation: pat-legs-b .5s ease-in-out infinite; }
-.pat-emoji {
-  display: block; font-size: min(30vw, 150px); line-height: 1; transform: scaleX(-1);
-  filter: grayscale(1) brightness(1.9) contrast(.8) opacity(.85);
-}
+.pat-img { display: block; width: 100%; height: auto; opacity: .92; }
 .pat-spark {
   position: absolute; width: 6px; height: 6px; border-radius: 50%;
   background: #eaf4ff; box-shadow: 0 0 8px 2px rgba(160, 205, 255, .9);
   animation: pat-spark 1.2s ease-out forwards;
 }
 @keyframes pat-run {
-  0% { transform: translateX(-60vw); opacity: 0; }
+  0% { transform: translateX(calc(-100% - 20px)); opacity: 0; }
   12% { opacity: 1; }
   85% { opacity: 1; }
-  100% { transform: translateX(110vw); opacity: 0; }
+  100% { transform: translateX(100vw); opacity: 0; }
 }
 @keyframes pat-bound {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-18px) rotate(-4deg); }
 }
-@keyframes pat-legs-f { 0%, 100% { transform: rotate(-14deg); } 50% { transform: rotate(16deg); } }
-@keyframes pat-legs-b { 0%, 100% { transform: rotate(14deg); } 50% { transform: rotate(-16deg); } }
 @keyframes pat-spark {
   from { opacity: 1; transform: translate(0, 0) scale(1); }
   to { opacity: 0; transform: translate(-30px, 14px) scale(.2); }

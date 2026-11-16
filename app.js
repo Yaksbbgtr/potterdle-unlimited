@@ -342,35 +342,9 @@ function showEnd() {
 
 /* ---------------- Patronus run ---------------- */
 
-// A silver stag (or doe) drawn in SVG; other Patronuses use a tinted emoji.
-const DEER_SVG = (antlers) => `
-<svg viewBox="0 -24 220 190" class="pat-deer" aria-hidden="true">
-  <g class="pat-legs-back" stroke-linecap="round" stroke-linejoin="round">
-    <ellipse cx="68" cy="100" rx="20" ry="13" transform="rotate(25 68 100)"/>
-    <path d="M60 106 L36 116" stroke-width="9" fill="none"/><path d="M36 116 L8 110" stroke-width="5" fill="none"/>
-    <path d="M70 108 L48 128" stroke-width="8" fill="none"/><path d="M48 128 L20 134" stroke-width="4.5" fill="none"/>
-  </g>
-  <g class="pat-legs-front" stroke-linecap="round" stroke-linejoin="round">
-    <ellipse cx="134" cy="100" rx="15" ry="11" transform="rotate(-30 134 100)"/>
-    <path d="M138 104 L166 114" stroke-width="8" fill="none"/><path d="M166 114 L194 104" stroke-width="4.5" fill="none"/>
-    <path d="M130 108 L156 126" stroke-width="7" fill="none"/><path d="M156 126 L184 130" stroke-width="4" fill="none"/>
-  </g>
-  <ellipse cx="102" cy="92" rx="50" ry="23" transform="rotate(-8 102 92)"/>
-  <path d="M114 82 Q132 56 144 32 L168 36 Q162 72 154 102 Z"/>
-  <ellipse cx="170" cy="44" rx="20" ry="9.5" transform="rotate(26 170 44)"/>
-  <ellipse cx="153" cy="29" rx="9" ry="3.5" transform="rotate(-35 153 29)"/>
-  <path d="M56 80 Q40 66 44 88 Z"/>
-  ${antlers ? `<g class="pat-antlers" stroke-linecap="round" fill="none" stroke-width="4">
-    <path d="M158 32 C150 12 138 0 122 -8"/>
-    <path d="M150 18 L160 2"/><path d="M142 8 L148 -10"/><path d="M132 0 L130 -18"/>
-    <path d="M162 32 C170 16 178 6 194 0"/>
-    <path d="M170 18 L186 16"/><path d="M178 9 L182 -6"/>
-  </g>` : ""}
-</svg>`;
-const PATRONUS_EMOJI = {
-  Otter: "🦦", Phoenix: "🐦‍🔥", "Jack Russell terrier": "🐕", Wolf: "🐺", Cat: "🐈", Horse: "🐎",
-  Hare: "🐇", Fox: "🦊", Boar: "🐗", Swan: "🦢", Weasel: "🦦", Lynx: "🐈", Goat: "🐐",
-};
+// Generated artwork in patronus/<name>.webp (transparent, silver on clear).
+const patronusImage = (animal) =>
+  `patronus/${animal === "Jack Russell terrier" ? "terrier" : animal.toLowerCase()}.webp`;
 
 function runPatronus(animal) {
   document.querySelector(".pat-stage")?.remove();
@@ -381,13 +355,19 @@ function runPatronus(animal) {
   runner.className = "pat-runner";
   const body = document.createElement("div");
   body.className = "pat-body";
-  if (animal === "Stag" || animal === "Doe") body.innerHTML = DEER_SVG(animal === "Stag");
-  else body.append(el("span", { class: "pat-emoji" }, PATRONUS_EMOJI[animal] || "✨"));
+  const img = new Image();
+  img.className = "pat-img";
+  img.alt = "";
+  img.src = patronusImage(animal);
+  body.append(img);
   runner.append(body);
   stage.append(runner);
+  runner.style.animationPlayState = "paused";
   document.body.append(stage);
   // Show above the round-over dialog (both live in the top layer).
   try { stage.showPopover(); } catch {}
+  // Start running once the picture is ready; give up quietly if it can't load.
+  img.decode().then(() => (runner.style.animationPlayState = ""), () => stage.remove());
 
   const sparkle = setInterval(() => {
     const r = body.getBoundingClientRect();
@@ -944,4 +924,10 @@ if (!settings.seenHelp) {
   settings.seenHelp = true;
   saveSettings();
   $("#dlg-help").showModal();
+}
+
+// Preview: add ?patronus=stag (or doe, otter, …) to the address to watch one run.
+{
+  const p = new URLSearchParams(location.search).get("patronus");
+  if (p) setTimeout(() => runPatronus(p.toLowerCase() === "terrier" ? "Jack Russell terrier" : p[0].toUpperCase() + p.slice(1).toLowerCase()), 600);
 }
