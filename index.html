@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en" data-skin="site">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0d0b1e">
+  <meta name="theme-color" content="#f6f0e1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1424" media="(prefers-color-scheme: dark)">
   <title>Potterdle Unlimited</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -14,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Cinzel:wght@700&display=swap">
-  <link rel="stylesheet" href="style.css?v=2026111730">
+  <link rel="stylesheet" href="style.css?v=2026111740">
 </head>
 <body>
   <header class="top">
@@ -93,8 +94,9 @@
       <div id="series-list" class="checks"></div>
       <p class="muted small">You can still guess any character. This only limits who the answer can be. If the current character is from a book you turn off, you get a new one when you close Settings.</p>
       <h3>Display</h3>
+      <label class="switch"><span>Theme</span><select id="opt-theme"><option value="system">Match device</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
       <label class="switch"><span>High-contrast colors</span><input type="checkbox" id="opt-cb"></label>
-      <label class="switch"><span>Reduce animations <small class="muted">(also stops the background)</small></span><input type="checkbox" id="opt-motion"></label>
+      <label class="switch"><span>Reduce animations</span><input type="checkbox" id="opt-motion"></label>
       <h3>App version</h3>
       <div class="version-row">
         <span class="small muted">Version <span id="app-version"></span></span>
@@ -158,8 +160,7 @@
     </form>
   </dialog>
 
-  <script src="characters.js?v=2026111730"></script>
-  <script src="fx.js?v=2026111730"></script>
-  <script src="app.js?v=2026111730"></script>
+  <script src="characters.js?v=2026111740"></script>
+  <script src="app.js?v=2026111740"></script>
 </body>
 </html>
