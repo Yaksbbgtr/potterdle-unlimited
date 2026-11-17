@@ -9,7 +9,7 @@
 	{"name": ["Lucius", "Malfoy"], "house": "Slytherin", "book": 2, "blood": ["Human", "Pure-blood"], "affiliation": ["Death Eater"], "family": ["Malfoy"]},
 	{"name": ["Narcissa", "Malfoy"], "house": "Slytherin", "book": 4, "blood": ["Human", "Pure-blood"], "affiliation": [], "family": ["Malfoy", "Black"]},
 	{"name": ["Remus", "Lupin", "(Moony)"], "house": "Gryffindor", "book": 3, "blood": ["Werewolf", "Half-blood"], "affiliation": ["Hogwarts Staff", "Order of the Phoenix", "Marauders"], "family": ["Lupin"], "patronus": "Wolf"},
-	{"name": ["Sirius", "Black", "(Padfoot)"], "house": "Gryffindor", "book": 3, "blood": ["Human", "Pure-blood"], "affiliation": ["Order of the Phoenix", "Marauders"], "family": ["Black"]},
+	{"name": ["Sirius", "Black", "(Padfoot)"], "house": "Gryffindor", "book": 3, "blood": ["Human", "Pure-blood"], "affiliation": ["Order of the Phoenix", "Marauders"], "family": ["Black"], "patronus": "Large dog"},
 	{"name": ["James", "Potter", "(Prongs)"], "house": "Gryffindor", "book": 1, "blood": ["Human", "Pure-blood"], "affiliation": ["Order of the Phoenix", "Marauders", "Quidditch"], "family": ["Potter"], "patronus": "Stag"},
 	{"name": ["Lily", "Potter", "(Evans)"], "house": "Gryffindor", "book": 1, "blood": ["Human", "Muggle-born"], "affiliation": ["Order of the Phoenix"], "family": ["Potter", "Evans"], "patronus": "Doe"},
 	{"name": ["Peter", "Pettigrew", "(Wormtail)"], "house": "Gryffindor", "book": 3, "blood": ["Human", "Unknown"], "affiliation": ["Death Eater", "Marauders"], "family": ["Pettigrew"]},

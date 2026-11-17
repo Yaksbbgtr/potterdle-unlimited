@@ -344,7 +344,7 @@ function showEnd() {
 
 // Generated artwork in patronus/<name>.webp (transparent, silver on clear).
 const patronusImage = (animal) =>
-  `patronus/${animal === "Jack Russell terrier" ? "terrier" : animal.toLowerCase()}.webp`;
+  `patronus/${animal === "Jack Russell terrier" ? "terrier" : animal.toLowerCase().replaceAll(" ", "-")}.webp`;
 
 function runPatronus(animal) {
   document.querySelector(".pat-stage")?.remove();
@@ -929,5 +929,5 @@ if (!settings.seenHelp) {
 // Preview: add ?patronus=stag (or doe, otter, …) to the address to watch one run.
 {
   const p = new URLSearchParams(location.search).get("patronus");
-  if (p) setTimeout(() => runPatronus(p.toLowerCase() === "terrier" ? "Jack Russell terrier" : p[0].toUpperCase() + p.slice(1).toLowerCase()), 600);
+  if (p) setTimeout(() => runPatronus(p.toLowerCase() === "terrier" ? "Jack Russell terrier" : p[0].toUpperCase() + p.slice(1).toLowerCase().replaceAll("-", " ")), 600);
 }
