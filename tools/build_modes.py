@@ -91,18 +91,36 @@ def tidy(s, limit=420):
     return (cut[: end + 1] if end > 120 else cut.rsplit(" ", 1)[0] + "…").strip()
 
 
+overrides = load("clue_overrides.json")
+BLANK = "▁▁▁"
+NOT_FAMOUS = {"Sonorous Charm", "Cribbing Spell", "Avenseguim", "Repello Inimicum"}
+
+
+def clue(kind, name, text, names):
+    """A hand-written clue if we have one, else the database text with the answer hidden.
+    Returns (clue, usable): a clue that had to hide words reads badly, so it's never the answer."""
+    if name in overrides[kind]:
+        return overrides[kind][name], True
+    text = re.split(r"\s*Seen/Mentioned:", text or "")[0]
+    out = redact(tidy(text), names)
+    return out, BLANK not in out
+
+
 spells = []
 src = [s for s in load("data/spells.json") if s.get("description") and not s["name"].startswith("Type:")]
 famous = famous_spell_names([s["name"] for s in src])
 for s in src:
     names = [s["name"], s.get("other_name")]
+    d, usable = clue("spells", s["name"], s["description"], names)
+    hint = redact(tidy(s.get("mention") or "", 300), names)
     spells.append({
         "name": s["name"],
         "alt": s.get("other_name") or "",
         "type": s.get("spell_type") or "Spell",
-        "d": redact(tidy(s["description"]), names),
-        "hint": redact(tidy(s.get("mention") or "", 300), names),
-        "famous": s["name"] in famous,
+        "d": d,
+        "hint": "" if BLANK in hint else hint,
+        "famous": s["name"] in famous and usable and s["name"] not in NOT_FAMOUS,
+        "pickable": usable,
     })
 
 potions = []
@@ -116,8 +134,9 @@ for p in load("data/potions.json"):
     potions.append({
         "name": name,
         "alt": alt,
-        "d": redact(tidy(p["description"]), [name, alt]),
-        "famous": name in FAMOUS_POTIONS,
+        "d": clue("potions", name, p["description"], [name, alt])[0],
+        "famous": name in FAMOUS_POTIONS and clue("potions", name, p["description"], [name, alt])[1],
+        "pickable": clue("potions", name, p["description"], [name, alt])[1],
     })
 
 def need_char(who, where):
