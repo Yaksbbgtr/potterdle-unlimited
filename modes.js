@@ -43,7 +43,8 @@ const DEFS = {
     items: () => M.spells.filter((s) => (settings.famousOnly ? s.famous : s.pickable)),
     keyOf: (s) => s.name,
     clue: (s) => s.d,
-    options: () => M.spells.map((s) => ({ key: s.name, label: s.name, small: s.alt, alt: s.alt })),
+    // No alternate names here: "Summoning Charm" next to Accio would give the answer away.
+    options: () => M.spells.map((s) => ({ key: s.name, label: s.name })),
     hints: [
       { at: 2, label: "Type", value: (s) => s.type },
       { at: 4, label: "Used", value: (s) => s.hint || "No recorded use." },

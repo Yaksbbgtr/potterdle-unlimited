@@ -95,7 +95,25 @@ def clue(kind, name, text, names):
 
 
 spells = []
-src = [s for s in load("data/spells.json") if s.get("description") and not s["name"].startswith("Type:")]
+# Spells named in plain English ("Hover Charm", "Teapot to tortoise") say what they do, so the clue
+# gives them away. Only incantations are kept (user request 2026-11-18).
+DESCRIPTIVE_WORDS = {"charm", "jinx", "hex", "curse", "spell", "line", "vow", "sparks", "flames", "fog", "quill",
+                     "torture", "snowballs", "firecrackers", "fire", "flight"}
+KEEP_NAMED = {"Fidelius Charm", "Protean Charm", "Homorphus Charm", "Homonculous Charm", "Flagrante Curse"}
+DROP_NAMED = {"Apparition", "Point Me", "Pack", "Taboo", "Badgering", "Cauldron to Sieve", "Cauldron to badger",
+              "Ears to kumquats", "Firestorm", "Desk Into Pig", "Ferret to human", "Rose Growth"}
+
+
+def says_what_it_does(name):
+    if name in KEEP_NAMED:
+        return False
+    if name in DROP_NAMED:
+        return True
+    return any(w.lower() in DESCRIPTIVE_WORDS for w in re.findall(r"[A-Za-z]+", name))
+
+
+src = [s for s in load("data/spells.json")
+       if s.get("description") and not s["name"].startswith("Type:") and not says_what_it_does(s["name"])]
 famous = famous_spell_names([s["name"] for s in src])
 for s in src:
     names = [s["name"], s.get("other_name")]
