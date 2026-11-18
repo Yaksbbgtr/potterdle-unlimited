@@ -4,7 +4,7 @@
  * Extra game modes: Quote, Spell, Potion, Description, Location.
  * Loaded after app.js and reuses its helpers ($, el, store, settings, CHARACTERS, …).
  * Each mode is a clue + free guesses; hints unlock after a number of wrong guesses.
- * Spell and potion data: theDavidBarton/the-harry-potter-database (MIT).
+ * Spell data: theDavidBarton/the-harry-potter-database (MIT). Potions: hand-written, books only.
  * ========================================================= */
 
 const M = window.MODES;
@@ -58,17 +58,18 @@ const DEFS = {
     noun: "potion",
     kicker: "Which potion is this?",
     placeholder: "Guess a potion…",
-    items: () => M.potions.filter((p) => (settings.famousOnly ? p.famous : p.pickable)),
+    items: () => M.potions,
     keyOf: (p) => p.name,
     clue: (p) => p.d,
     options: () => M.potions.map((p) => ({ key: p.name, label: p.name, small: p.alt, alt: p.alt })),
     hints: [
-      { at: 3, label: "Letter", value: (p) => firstLetter(p.name) },
+      { at: 2, label: "Book", value: (p) => bookHint(p.book) },
+      { at: 4, label: "Letter", value: (p) => firstLetter(p.name) },
       { at: 6, label: "Length", value: (p) => letterCount(p.name) },
     ],
     answerName: (p) => p.name,
     answerSub: (p) => p.alt,
-    facts: () => [],
+    facts: (p) => [["Book", bookHint(p.book)]],
   },
   description: {
     label: "Description",
@@ -376,7 +377,7 @@ let mActive = -1;
 
 function mSearch(q) {
   q = q.trim().toLowerCase();
-  if (!q) return [];
+  if (q.length < MIN_CHARS) return [];
   const guessed = new Set(mgames[mode].guesses);
   const scored = [];
   for (const o of DEFS[mode].options()) {
@@ -399,7 +400,7 @@ function mRender() {
   mMatches = mSearch(q);
   mActive = mMatches.length ? 0 : -1;
   mList.replaceChildren();
-  if (!q) return mClose();
+  if (q.length < MIN_CHARS) return mClose();
   if (!mMatches.length) mList.append(el("li", { class: "none" }, `No matching ${DEFS[mode].noun}`));
   mMatches.forEach((o, i) => {
     const li = el("li", { role: "option", id: `mopt-${i}`, "aria-selected": String(i === mActive) },
@@ -448,9 +449,9 @@ famousBox.addEventListener("change", () => {
   settings.famousOnly = famousBox.checked;
   saveSettings();
 });
-// If the current spell/potion is no longer allowed, swap it (no win or loss recorded).
+// If the current spell is no longer allowed, swap it (no win or loss recorded).
 $("#dlg-settings").addEventListener("close", () => {
-  for (const m of ["spell", "potion"]) {
+  for (const m of ["spell"]) {
     const g = mgames[m];
     if (g && !g.over && !DEFS[m].items().some((i) => i.name === g.target)) {
       newMGame(m);

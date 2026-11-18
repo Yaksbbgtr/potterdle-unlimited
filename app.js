@@ -403,9 +403,12 @@ function highlight(text, q) {
   return frag;
 }
 
+// Suggestions only show once you've typed this many letters.
+const MIN_CHARS = 2;
+
 function search(q) {
   q = q.trim().toLowerCase();
-  if (!q) return [];
+  if (q.length < MIN_CHARS) return [];
   const guessed = new Set(game.guesses);
   const scored = [];
   for (const c of CHARACTERS) {
@@ -427,7 +430,7 @@ function renderSuggestions() {
   matches = search(q);
   active = matches.length ? 0 : -1;
   list.replaceChildren();
-  if (!q) {
+  if (q.length < MIN_CHARS) {
     closeSuggestions();
     return;
   }

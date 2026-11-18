@@ -3,7 +3,8 @@
 Usage: python3 tools/build_modes.py
 
 Sources:
-  tools/data/spells.json, tools/data/potions.json  from theDavidBarton/the-harry-potter-database (MIT)
+  tools/data/spells.json  from theDavidBarton/the-harry-potter-database (MIT)
+  tools/potions.source.json       {"name", "book", "d"}           potions from the books, hand-written clues
   tools/quotes.source.json        {"q", "who", "book"}            who = a character name from characters.source.json
   tools/descriptions.source.json  {"who", "job", "d"}             book comes from the character's First book
   tools/locations.source.json     {"name", "book", "area", "d"}
@@ -22,8 +23,8 @@ for c in load("characters.source.json"):
     chars.setdefault(re.sub(r"\s*\(.*?\)", "", full).strip(), c)
 full_name = lambda who: " ".join(chars[who]["name"])
 
-# Spells and potions that show up in the books or are widely known. These can be the answer;
-# every spell/potion with a description can still be guessed.
+# Spells that show up in the books or are widely known. These can be the answer;
+# every spell with a description can still be guessed.
 FAMOUS_SPELLS = """Accio Aguamenti Alohomora Anapneo Aparecium Ascendio Avis Bombarda Brackium Emendo Colloportus
 Confringo Confundo Crucio Defodio Deletrius Densaugeo Deprimo Depulso Descendo Diffindo Dissendium Duro Engorgio
 Episkey Erecto Evanesco Expecto Patronum Expelliarmus Expulso Ferula Fidelius Charm Fiendfyre Finite Incantatem
@@ -36,19 +37,6 @@ Specialis Revelio Stupefy Tarantallegra Tergeo Unbreakable Vow Vipera Evanesca W
 Apparition Disillusionment Charm Taboo Age Line Imperturbable Charm Bat-Bogey Hex Cave inimicum Repello Inimicum
 Anti-Disapparition Jinx Sonorous Charm Bubble-Head Charm Cheering Charm Hover Charm Permanent Sticking Charm
 Mimblewimble Avenseguim Cribbing Spell Horcrux-making spell Obscuro Oculus Reparo Partis Temporus"""
-FAMOUS_POTIONS = {
-    "Amortentia", "Polyjuice Potion", "Felix Felicis", "Veritaserum", "Draught of Living Death", "Wolfsbane Potion",
-    "Skele-Gro", "Pepperup Potion", "Elixir of Life", "Draught of Peace", "Shrinking Solution", "Swelling Solution",
-    "Wit-Sharpening Potion", "Babbling Beverage", "Hair-Raising Potion", "Mandrake Restorative Draught",
-    "Calming Draught", "Dreamless Sleep Potion", "Strengthening Solution", "Invisibility Potion", "Forgetfulness Potion",
-    "Ageing Potion", "Love Potion", "Murtlap Essence", "Essence of Dittany", "Gillyweed", "Drink of Despair",
-    "Elixir to Induce Euphoria", "Hiccoughing Solution", "Draught of Peace", "Wideye Potion", "Sleeping Draught",
-    "Blood-Replenishing Potion", "Oculus Potion", "Bulgeye Potion", "Doxycide", "Bruise removal paste",
-    "Burn-healing paste", "Fire Protection Potion", "Cure for Boils", "Antidote to Common Poisons", "Baruffio's Brain Elixir",
-    "Befuddlement Draught", "Confusing Concoction", "Garrotting Gas", "Golden Glow", "Herbicide Potion",
-    "Mrs Skower's All-Purpose Magical Mess Remover", "Felix Felicis", "Sleekeazy's Hair Potion", "Burn-Healing Paste", "Mrs Scower's All-Purpose Magical Mess Remover",
-    "Love Potion Antidote", "Antidote to Veritaserum", "Regeneration Potion", "Thick golden potion", "Deflating Draught",
-}
 WORD = re.compile(r"[A-Za-z][A-Za-z'-]+")
 
 
@@ -93,14 +81,13 @@ def tidy(s, limit=420):
 
 overrides = load("clue_overrides.json")
 BLANK = "▁▁▁"
-REMOVED_POTIONS = {"Invisibility Potion"}  # clue gave the answer away
 NOT_FAMOUS = {"Sonorous Charm", "Cribbing Spell", "Avenseguim", "Repello Inimicum"}
 
 
 def clue(kind, name, text, names):
     """A hand-written clue if we have one, else the database text with the answer hidden.
     Returns (clue, usable): a clue that had to hide words reads badly, so it's never the answer."""
-    if name in overrides[kind]:
+    if name in overrides.get(kind, {}):
         return overrides[kind][name], True
     text = re.split(r"\s*Seen/Mentioned:", text or "")[0]
     out = redact(tidy(text), names)
@@ -124,21 +111,12 @@ for s in src:
         "pickable": usable,
     })
 
+# Potions: only ones from the seven books, with hand-written clues (tools/potions.source.json).
 potions = []
-for p in load("data/potions.json"):
-    if not p.get("description") or p["name"] in REMOVED_POTIONS:
-        continue
-    name, alt = p["name"], ""
-    m = re.match(r"(.*?) \(Also known as (.*)\)$", name)
-    if m:
-        name, alt = m.groups()
-    potions.append({
-        "name": name,
-        "alt": alt,
-        "d": clue("potions", name, p["description"], [name, alt])[0],
-        "famous": name in FAMOUS_POTIONS and clue("potions", name, p["description"], [name, alt])[1],
-        "pickable": clue("potions", name, p["description"], [name, alt])[1],
-    })
+for p in load("potions.source.json"):
+    if not (1 <= p["book"] <= 7):
+        sys.exit(f"potion {p['name']}: bad book")
+    potions.append({"name": p["name"], "alt": p.get("alt", ""), "d": p["d"], "book": p["book"], "famous": True, "pickable": True})
 
 def need_char(who, where):
     if who not in chars:
