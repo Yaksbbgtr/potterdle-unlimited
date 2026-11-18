@@ -58,29 +58,31 @@ function compareName(a, b) {
   return fuzzyCompareArray(norm(a), norm(b));
 }
 
-// Blood status: [species, status], e.g. ["Human", "Half-blood"] or ["House-elf"].
-function compareBlood(a, b) {
-  const speciesMatches = a[0] === b[0];
+// The source data stores [species, blood status], e.g. ["Human", "Half-blood"] or ["House-elf"].
+// They're shown and compared as two separate columns.
+const speciesOf = (c) => c.blood[0];
+const statusOf = (c) => c.blood[1]; // undefined for creatures without one
+
+function compareStatus(a, b) {
   // "Unknown" isn't real information, so two unknown statuses don't count as a match.
-  const statusMatches = a[1] === b[1] && a[1] !== "Unknown";
-  if (speciesMatches && (statusMatches || (a[1] === undefined && b[1] === undefined))) return "Full";
-  if (speciesMatches || (statusMatches && a[1] !== undefined)) return "Partial";
-  return "None";
+  if (a === undefined && b === undefined) return "Full";
+  return a === b && a !== "Unknown" ? "Full" : "None";
 }
 
 function compare(guess, target) {
-  if (guess === target) return Array(6).fill("Full");
+  if (guess === target) return Array(7).fill("Full");
   return [
     compareName(guess.name, target.name),
     guess.house === target.house ? "Full" : "None",
     guess.book === target.book ? "Full" : "None",
-    compareBlood(guess.blood, target.blood),
+    speciesOf(guess) === speciesOf(target) ? "Full" : "None",
+    compareStatus(statusOf(guess), statusOf(target)),
     fuzzyCompareArray(guess.affiliation, target.affiliation),
     fuzzyCompareArray(guess.family, target.family),
   ];
 }
 
-const formatBlood = (s) => (s.length > 1 ? `${s[0]} (${s.slice(1).join(" ")})` : s[0]);
+const formatStatus = (c) => statusOf(c) || "—";
 const listOrDash = (a) => (a && a.length ? a.join(", ") : "—");
 // Arrow on a missed book: ▲ means the answer appears later, ▼ earlier.
 const bookArrow = (guess, target) => (guess.book === target.book ? "" : guess.book < target.book ? " ▲" : " ▼");
@@ -273,7 +275,8 @@ function buildRow(id, animate) {
     c.display,
     c.house || "—",
     [bookTitle(c.book), `Book ${c.book}${bookArrow(c, target)}`],
-    formatBlood(c.blood),
+    speciesOf(c),
+    formatStatus(c),
     listOrDash(c.affiliation),
     listOrDash(c.family),
   ];
@@ -327,7 +330,8 @@ function showEnd() {
   for (const [k, v] of [
     ["House", t.house || "—"],
     ["First book", `${t.book}. ${bookTitle(t.book)}`],
-    ["Blood status", formatBlood(t.blood)],
+    ["Species", speciesOf(t)],
+    ["Blood status", formatStatus(t)],
     ["Affiliation", listOrDash(t.affiliation)],
     ["Family", listOrDash(t.family)],
   ]) facts.append(el("dt", {}, k), el("dd", {}, v));

@@ -213,7 +213,7 @@ main { max-width: 1000px; margin: 0 auto; padding-top: 18px; }
 /* ---------- board ---------- */
 .board-head, .row {
   display: grid;
-  grid-template-columns: 1.2fr repeat(5, minmax(0, 1fr));
+  grid-template-columns: 1.2fr repeat(6, minmax(0, 1fr));
   gap: 6px;
 }
 .board-head {
@@ -477,7 +477,7 @@ dialog { max-height: calc(100vh - 32px); overflow-y: auto; }
   .icon-btn { width: 34px; height: 34px; }
   .icon-btn svg { width: 22px; height: 22px; }
   .board-head, .row { gap: 4px; }
-  .board-head, .row { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; }
+  .board-head, .row { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
   .board-head { font-size: 7.5px; letter-spacing: 0; }
   .cell-inner { min-height: 64px; }
   .face { font-size: 10px; padding: 5px 2px; }
