@@ -152,7 +152,7 @@ main { max-width: 1000px; margin: 0 auto; padding-top: 18px; }
   flex-wrap: wrap;
 }
 .combo { position: relative; flex: 1 1 300px; }
-#guess-input {
+.gin {
   width: 100%;
   height: 48px;
   padding: 0 14px;
@@ -163,10 +163,10 @@ main { max-width: 1000px; margin: 0 auto; padding-top: 18px; }
   font: 600 16px var(--font);
   outline: none;
 }
-#guess-input:focus { border-color: var(--muted); }
-#guess-input:disabled { opacity: .55; }
+.gin:focus { border-color: var(--muted); }
+.gin:disabled { opacity: .55; }
 
-#suggestions {
+.sugg {
   position: absolute;
   z-index: 20;
   top: calc(100% + 4px);
@@ -180,17 +180,17 @@ main { max-width: 1000px; margin: 0 auto; padding-top: 18px; }
   max-height: 320px;
   overflow-y: auto;
 }
-#suggestions li {
+.sugg li {
   padding: 10px 12px;
   border-radius: 4px;
   cursor: pointer;
   display: flex; justify-content: space-between; gap: 12px;
   font-weight: 500;
 }
-#suggestions li small { color: var(--muted); white-space: nowrap; font-weight: 400; }
-#suggestions li[aria-selected="true"], #suggestions li:hover { background: var(--hover); }
-#suggestions mark { background: none; color: inherit; font-weight: 800; }
-#suggestions .none { color: var(--muted); cursor: default; }
+.sugg li small { color: var(--muted); white-space: nowrap; font-weight: 400; }
+.sugg li[aria-selected="true"], .sugg li:hover { background: var(--hover); }
+.sugg mark { background: none; color: inherit; font-weight: 800; }
+.sugg .none { color: var(--muted); cursor: default; }
 
 .actions { display: flex; gap: 8px; }
 .btn {
@@ -521,3 +521,96 @@ body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after 
   from { opacity: 1; transform: translate(0, 0) scale(1); }
   to { opacity: 0; transform: translate(-30px, 14px) scale(.2); }
 }
+
+/* ---------- game modes ---------- */
+.modes {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 14px auto 0;
+}
+.mode-btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 17px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font: 600 13px var(--font);
+  cursor: pointer;
+}
+.mode-btn:hover { background: var(--hover); }
+.mode-btn.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+.mode-btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+.clue-card {
+  max-width: 640px;
+  margin: 0 auto 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  text-align: center;
+}
+.clue-kicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.clue-text { margin: 0; font-size: 17px; line-height: 1.5; text-wrap: pretty; }
+.clue-text.quote { font-family: Georgia, serif; font-style: italic; font-size: 20px; }
+
+.hints {
+  list-style: none;
+  padding: 0;
+  max-width: 640px;
+  margin: 0 auto 18px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hint {
+  flex: 1 1 150px;
+  padding: 8px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+.hint.open { flex-basis: 100%; border-style: solid; border-color: var(--partial); color: var(--text); text-align: left; }
+.hint-label { display: block; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+.m-guesses {
+  list-style: none;
+  padding: 0;
+  max-width: 640px;
+  margin: 0 auto;
+  display: grid;
+  gap: 6px;
+}
+.mg {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 4px;
+  color: var(--tile-text);
+  font-weight: 700;
+}
+.mg small { font-weight: 400; opacity: .85; text-align: right; }
+.mg.Full { background: var(--full); }
+.mg.None { background: var(--none); }
+.mg.pop { animation: mg-pop .35s ease-out; }
+@keyframes mg-pop { from { transform: scale(.94); opacity: 0; } to { transform: none; opacity: 1; } }
+.reduce-motion .mg.pop { animation: none; }
+.mend-sub { margin: -4px 0 12px; color: var(--muted); font-style: italic; }
+.mode-help { padding-left: 18px; margin: 0 0 12px; }
+.mode-help li { margin-bottom: 4px; }

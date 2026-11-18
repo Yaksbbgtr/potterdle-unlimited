@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Cinzel:wght@700&display=swap">
-  <link rel="stylesheet" href="style.css?v=2026111800">
+  <link rel="stylesheet" href="style.css?v=2026111801">
 </head>
 <body>
   <header class="top">
@@ -39,6 +39,8 @@
     </div>
   </header>
 
+  <nav class="modes" id="mode-nav" aria-label="Game mode"></nav>
+
   <main>
     <section class="status" aria-live="polite">
       <div class="pill"><span class="pill-label">Round</span><span id="round-num">1</span></div>
@@ -46,12 +48,13 @@
       <div class="pill"><span class="pill-label">Streak</span><span id="streak">0</span></div>
     </section>
 
+    <div id="classic">
     <section class="guess-box">
       <div class="combo">
-        <input id="guess-input" type="text" autocomplete="off" spellcheck="false"
+        <input id="guess-input" class="gin" type="text" autocomplete="off" spellcheck="false"
                placeholder="Guess a Harry Potter character…" aria-label="Guess a character"
                role="combobox" aria-expanded="false" aria-controls="suggestions" aria-autocomplete="list">
-        <ul id="suggestions" role="listbox" hidden></ul>
+        <ul id="suggestions" class="sugg" role="listbox" hidden></ul>
       </div>
       <div class="actions">
         <button class="btn ghost" id="btn-giveup">Give up</button>
@@ -66,6 +69,27 @@
       <div id="rows"></div>
       <p class="empty" id="empty">Pick any character to start. Each guess shows how close you are.</p>
     </section>
+    </div>
+
+    <div id="clue-mode" hidden>
+      <section class="clue-card">
+        <p class="clue-kicker" id="clue-kicker"></p>
+        <blockquote class="clue-text" id="clue-text"></blockquote>
+      </section>
+      <ul class="hints" id="hints"></ul>
+      <section class="guess-box">
+        <div class="combo">
+          <input id="m-input" class="gin" type="text" autocomplete="off" spellcheck="false"
+                 role="combobox" aria-expanded="false" aria-controls="m-suggestions" aria-autocomplete="list">
+          <ul id="m-suggestions" class="sugg" role="listbox" hidden></ul>
+        </div>
+        <div class="actions">
+          <button class="btn ghost" id="m-giveup">Give up</button>
+          <button class="btn primary" id="m-new">New</button>
+        </div>
+      </section>
+      <ol class="m-guesses" id="m-guesses" reversed></ol>
+    </div>
   </main>
 
   <!-- How to play -->
@@ -81,6 +105,14 @@
       <p class="muted small">First book is where a character first appears in person (memories count). Characters who are only ever mentioned use the book they're first named in.</p>
       <ul class="legend" hidden>
       </ul>
+      <h3>Other modes</h3>
+      <ul class="small mode-help">
+        <li><b>Quote.</b> Who said it? The book is revealed after 4 wrong guesses.</li>
+        <li><b>Spell.</b> Name the spell from what it does. Hints: its type, then where it was used, then its first letter.</li>
+        <li><b>Potion.</b> Name the potion from its effect. Hints: first letter, then its length.</li>
+        <li><b>Description.</b> Which character is described? Hints: their first book, then their job.</li>
+        <li><b>Location.</b> Name the place. Hints: first book, then the area, then its first letter.</li>
+      </ul>
       <p class="muted">Tip: in Settings you can pick which books the mystery character can first appear in, so you avoid spoilers for books you haven't read.</p>
       <button class="btn primary" value="close">Got it</button>
     </form>
@@ -93,6 +125,9 @@
       <h3>Mystery character comes from</h3>
       <div id="series-list" class="checks"></div>
       <p class="muted small">You can still guess any character. This only limits who the answer can be. If the current character is from a book you turn off, you get a new one when you close Settings.</p>
+      <h3>Spell and Potion modes</h3>
+      <label class="switch"><span>Well-known answers only</span><input type="checkbox" id="opt-famous"></label>
+      <p class="muted small">On: the answer is a spell or potion from the books or that most fans know. Off: any of the 300+ spells and 140+ potions in the database (many come from the films, games and Fantastic Beasts).</p>
       <h3>Display</h3>
       <label class="switch"><span>Theme</span><select id="opt-theme"><option value="system">Match device</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
       <label class="switch"><span>High-contrast colors</span><input type="checkbox" id="opt-cb"></label>
@@ -165,7 +200,24 @@
     </form>
   </dialog>
 
-  <script src="characters.js?v=2026111800"></script>
-  <script src="app.js?v=2026111800"></script>
+  <!-- Round over in Quote / Spell / Potion / Description / Location -->
+  <dialog id="dlg-mend">
+    <form method="dialog" class="dlg end">
+      <p class="end-kicker" id="mend-kicker"></p>
+      <h2 id="mend-name"></h2>
+      <p class="mend-sub" id="mend-sub"></p>
+      <dl class="facts" id="mend-facts"></dl>
+      <p class="muted" id="mend-line"></p>
+      <div class="dlg-foot">
+        <button class="btn ghost" value="close">Close</button>
+        <button class="btn primary" value="next" id="mend-next" autofocus>Next →</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="characters.js?v=2026111801"></script>
+  <script src="modes-data.js?v=2026111801"></script>
+  <script src="app.js?v=2026111801"></script>
+  <script src="modes.js?v=2026111801"></script>
 </body>
 </html>

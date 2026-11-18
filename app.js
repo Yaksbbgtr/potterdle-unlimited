@@ -104,7 +104,7 @@ const store = {
 };
 
 const settings = Object.assign(
-  { series: SERIES.slice(), theme: "system", colorblind: false, reduceMotion: false, seenHelp: false },
+  { series: SERIES.slice(), theme: "system", colorblind: false, reduceMotion: false, seenHelp: false, famousOnly: true },
   store.get("settings", {}),
 );
 // Drop any series that no longer exist; fall back to everything if empty.
@@ -314,6 +314,7 @@ function updateChrome() {
   if (settings.theme === "system") document.documentElement.removeAttribute("data-theme");
   else document.documentElement.dataset.theme = settings.theme;
   document.body.classList.toggle("reduce-motion", settings.reduceMotion);
+  window.afterChrome?.(); // the other game modes take over the status pills
 }
 
 function showEnd() {
@@ -564,12 +565,14 @@ $("#btn-reset-stats").addEventListener("click", () => {
   statsResetAt = Date.now();
   history = [];
   recomputeStats();
+  window.resetModeHistory?.();
   saveHistory();
   updateChrome();
 });
 
 $("#btn-help").addEventListener("click", () => $("#dlg-help").showModal());
 $("#btn-stats").addEventListener("click", () => {
+  if (window.showModeStats?.()) return;
   renderStats();
   $("#dlg-stats").showModal();
 });
@@ -720,6 +723,7 @@ function snapshot() {
     customRemoved: store.get("customRemoved", {}),
     settings: { ...settings, seenHelp: true },
     game: gameToStored(game),
+    modeHistory: window.modeHistorySnapshot?.() || {},
   };
 }
 
@@ -765,6 +769,7 @@ function mergeRemote(r) {
     store.set("history", history);
     store.set("statsResetAt", statsResetAt);
     recomputeStats();
+    window.mergeModeHistory?.(r.modeHistory || {}, statsResetAt);
 
     // Added characters: union, honoring removals made after a character was added.
     const tomb = { ...(r.customRemoved || {}) };

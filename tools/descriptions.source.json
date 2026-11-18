@@ -1,0 +1,377 @@
+[
+ {
+  "who": "Harry James Potter",
+  "job": "Student, later Auror",
+  "d": "Orphaned as a baby, this boy grew up in a cupboard under the stairs before learning he was famous in a world he had never heard of. He carries a lightning-shaped scar."
+ },
+ {
+  "who": "Ronald Bilius Weasley",
+  "job": "Student, later joke-shop owner and Auror",
+  "d": "The sixth of seven children, he grew up with hand-me-down robes and a rat for a pet. Spiders terrify him, and he plays Keeper for his house team."
+ },
+ {
+  "who": "Hermione Jean Granger",
+  "job": "Student, later Minister for Magic",
+  "d": "The brightest witch of her age, born to two dentists. She used a Time-Turner to take extra classes and founded a society for the welfare of house-elves."
+ },
+ {
+  "who": "Albus Dumbledore",
+  "job": "Headmaster",
+  "d": "Known for defeating a dark wizard in 1945, he loves sherbet lemons and wears half-moon spectacles. He owns a phoenix."
+ },
+ {
+  "who": "Tom Marvolo Riddle (Lord Voldemort)",
+  "job": "Dark wizard",
+  "d": "Raised in a Muggle orphanage, he became the most feared dark wizard of all time and split his soul to cheat death."
+ },
+ {
+  "who": "Severus Snape",
+  "job": "Potions Master, later Headmaster",
+  "d": "A sallow, greasy-haired teacher who spent years coveting the Defence Against the Dark Arts post. His childhood friendship with a Muggle-born girl shaped his whole life."
+ },
+ {
+  "who": "Draco Malfoy",
+  "job": "Student",
+  "d": "A pale, pointed-faced pure-blood who sneers at anyone he thinks is beneath him. In his sixth year he was given a task he couldn't bring himself to finish."
+ },
+ {
+  "who": "Lucius Malfoy",
+  "job": "Ministry influencer, Death Eater",
+  "d": "A wealthy pure-blood with long blond hair and a snake-headed cane. He slipped a dangerous old diary into a cauldron at Flourish and Blotts."
+ },
+ {
+  "who": "Narcissa Malfoy",
+  "job": "Socialite",
+  "d": "A blonde pure-blood witch who once lied to the Dark Lord's face to protect her son."
+ },
+ {
+  "who": "Remus Lupin (Moony)",
+  "job": "Teacher",
+  "d": "A shabby, kind teacher with a secret that comes out once a month. He taught his class to fight boggarts by laughing at them."
+ },
+ {
+  "who": "Sirius Black (Padfoot)",
+  "job": "Fugitive",
+  "d": "He spent twelve years in Azkaban for a crime he did not commit and escaped by slipping past the guards in animal form."
+ },
+ {
+  "who": "Peter Pettigrew (Wormtail)",
+  "job": "Death Eater",
+  "d": "A small, watery-eyed wizard who faked his own death by cutting off a finger and lived for years as a family pet."
+ },
+ {
+  "who": "Minerva McGonagall",
+  "job": "Transfiguration teacher, Deputy Headmistress",
+  "d": "A stern witch in emerald robes who can turn into a tabby cat. She is head of the lions' house."
+ },
+ {
+  "who": "Neville Longbottom",
+  "job": "Student, later Herbology teacher",
+  "d": "A forgetful boy raised by his formidable grandmother. He's gifted with plants and once pulled a sword from a hat in front of the Dark Lord."
+ },
+ {
+  "who": "Luna Lovegood",
+  "job": "Student, later Magizoologist",
+  "d": "A dreamy girl who wears radish earrings and a butterbeer-cork necklace, and believes firmly in Crumple-Horned Snorkacks."
+ },
+ {
+  "who": "Ginny Weasley",
+  "job": "Student, later Quidditch player and journalist",
+  "d": "The only girl among seven siblings, she was possessed through an old diary in her first year and became a fierce Chaser."
+ },
+ {
+  "who": "Fred Weasley",
+  "job": "Joke-shop owner",
+  "d": "One half of a pair of mischief-making twins who left school in a burst of fireworks to open a shop in Diagon Alley."
+ },
+ {
+  "who": "George Weasley",
+  "job": "Joke-shop owner",
+  "d": "A prankster twin who lost an ear to a curse during an escape from Privet Drive."
+ },
+ {
+  "who": "Percy Weasley",
+  "job": "Ministry official",
+  "d": "A pompous Prefect and Head Boy who wrote a report on cauldron bottoms and sided with the Ministry over his own family."
+ },
+ {
+  "who": "Bill Weasley",
+  "job": "Curse-breaker for Gringotts",
+  "d": "A cool, ponytailed eldest son with a fang earring who works with tombs in Egypt. A werewolf's attack left him scarred."
+ },
+ {
+  "who": "Charlie Weasley",
+  "job": "Dragon keeper",
+  "d": "A stocky, freckled former Seeker who works with dragons in Romania."
+ },
+ {
+  "who": "Arthur Weasley",
+  "job": "Ministry of Magic, Misuse of Muggle Artefacts Office",
+  "d": "A balding Ministry wizard fascinated by Muggles. He enchanted a Ford Anglia to fly and collects plugs."
+ },
+ {
+  "who": "Molly Weasley",
+  "job": "Homemaker",
+  "d": "A plump, fierce mother of seven who knits jumpers for everyone and keeps a clock showing where each family member is."
+ },
+ {
+  "who": "Rubeus Hagrid",
+  "job": "Gamekeeper, Care of Magical Creatures teacher",
+  "d": "A half-giant who was expelled in his third year. He dreams of owning a dragon and keeps a pink umbrella that hides something."
+ },
+ {
+  "who": "Dolores Jane Umbridge",
+  "job": "Senior Undersecretary to the Minister",
+  "d": "A toad-like witch in fluffy pink cardigans who decorates her office with kitten plates and makes students write lines in their own blood."
+ },
+ {
+  "who": "Gilderoy Lockhart",
+  "job": "Author, Defence Against the Dark Arts teacher",
+  "d": "A vain, golden-haired author who took credit for other wizards' deeds and erased their memories. Winner of Witch Weekly's Most-Charming-Smile Award five times."
+ },
+ {
+  "who": "Quirinus Quirrell",
+  "job": "Defence Against the Dark Arts teacher",
+  "d": "A nervous, stuttering teacher who always wears a turban and smells oddly of garlic."
+ },
+ {
+  "who": "Alastor Moody (Mad-Eye)",
+  "job": "Auror",
+  "d": "A paranoid retired Auror with a wooden leg and a magical eye that can see through walls. He only drinks from his own hip flask."
+ },
+ {
+  "who": "Bellatrix Lestrange",
+  "job": "Death Eater",
+  "d": "A heavy-lidded witch with wild dark hair, devoted to the Dark Lord. She tortured a pair of Aurors into madness."
+ },
+ {
+  "who": "Nymphadora Tonks",
+  "job": "Auror",
+  "d": "A clumsy young Auror who can change her appearance at will and likes her hair bubblegum pink. Don't call her by her first name."
+ },
+ {
+  "who": "Dobby",
+  "job": "House-elf",
+  "d": "A house-elf with tennis-ball eyes who punishes himself, wears mismatched socks, and was freed by a sock hidden in a diary."
+ },
+ {
+  "who": "Kreacher",
+  "job": "House-elf",
+  "d": "A bitter old house-elf who mutters insults under his breath and treasures a locket left by his young master."
+ },
+ {
+  "who": "Winky",
+  "job": "House-elf",
+  "d": "A house-elf who took her dismissal so hard she drowned her sorrows in butterbeer in the Hogwarts kitchens."
+ },
+ {
+  "who": "Cedric Diggory",
+  "job": "Student",
+  "d": "A handsome Hufflepuff Seeker and Prefect who became a champion for his school. He was told to share a cup."
+ },
+ {
+  "who": "Cho Chang",
+  "job": "Student",
+  "d": "A pretty Ravenclaw Seeker who cried a lot in the year after her boyfriend died."
+ },
+ {
+  "who": "Viktor Krum",
+  "job": "Quidditch player",
+  "d": "A surly, hook-nosed international Seeker who walks like a duck and invited a bookish girl to the Yule Ball."
+ },
+ {
+  "who": "Fleur Delacour",
+  "job": "Student, later Gringotts employee",
+  "d": "Part-Veela, she was her school's champion and later married into a large red-haired family."
+ },
+ {
+  "who": "Sybill Trelawney",
+  "job": "Divination teacher",
+  "d": "A thin, bespectacled seer draped in shawls who predicts a student's death every year. Twice in her life she gave a real prophecy."
+ },
+ {
+  "who": "Pomona Sprout",
+  "job": "Herbology teacher",
+  "d": "A squat witch with flyaway grey hair and earth on her clothes. She runs the greenhouses and heads the badger house."
+ },
+ {
+  "who": "Filius Flitwick",
+  "job": "Charms teacher",
+  "d": "A tiny teacher who has to stand on a pile of books to see over his desk. He was once a duelling champion."
+ },
+ {
+  "who": "Argus Filch",
+  "job": "Caretaker",
+  "d": "A bad-tempered Squib caretaker who longs to hang students by their thumbs and adores his cat."
+ },
+ {
+  "who": "Poppy Pomfrey",
+  "job": "Matron",
+  "d": "A strict school nurse who can regrow bones overnight but never lets visitors stay long."
+ },
+ {
+  "who": "Moaning Myrtle",
+  "job": "Ghost",
+  "d": "A spotty, gloomy ghost who haunts a girls' bathroom on the first floor. She died after seeing a pair of yellow eyes."
+ },
+ {
+  "who": "Peeves",
+  "job": "Poltergeist",
+  "d": "A troublemaking poltergeist who drops water balloons, sings rude songs, and only obeys the Bloody Baron."
+ },
+ {
+  "who": "Sir Nicholas de Mimsy-Porpington (Nearly Headless Nick)",
+  "job": "Ghost",
+  "d": "A ghost whose execution went badly: forty-five chops with a blunt axe left his head hanging by a thread. He holds a Deathday party."
+ },
+ {
+  "who": "Dudley Dursley",
+  "job": "Student (Smeltings)",
+  "d": "A spoilt Muggle boy who was given a pig's tail and later became a boxing champion."
+ },
+ {
+  "who": "Vernon Dursley",
+  "job": "Director of Grunnings",
+  "d": "A beefy, purple-faced Muggle with a huge moustache who sells drills and hates anything unusual."
+ },
+ {
+  "who": "Petunia Dursley",
+  "job": "Homemaker",
+  "d": "A bony Muggle woman with a long neck, perfect for spying on the neighbours. She was jealous of her magical sister."
+ },
+ {
+  "who": "Cornelius Oswald Fudge",
+  "job": "Minister for Magic",
+  "d": "A portly politician in a lime-green bowler hat who refused to believe the Dark Lord had returned."
+ },
+ {
+  "who": "Kingsley Shacklebolt",
+  "job": "Auror, later Minister for Magic",
+  "d": "A tall, bald wizard with a deep, slow voice and a single gold earring. He guarded a Muggle Prime Minister while undercover."
+ },
+ {
+  "who": "Mundungus Fletcher",
+  "job": "Petty criminal",
+  "d": "A small, smelly, droopy-eyed thief who sold off treasures from Grimmauld Place."
+ },
+ {
+  "who": "Barty Crouch Jr.",
+  "job": "Death Eater",
+  "d": "A Death Eater smuggled out of Azkaban by his own family and later spent a whole year disguised as someone else."
+ },
+ {
+  "who": "Barty Crouch Sr.",
+  "job": "Head of the Department of International Magical Cooperation",
+  "d": "A rigid Ministry official with a toothbrush moustache who sent his own son to Azkaban and could speak over two hundred languages."
+ },
+ {
+  "who": "Ludo Bagman",
+  "job": "Head of the Department of Magical Games and Sports",
+  "d": "A former Beater with a broken nose who bet heavily on the Quidditch World Cup and ran from goblin debts."
+ },
+ {
+  "who": "Rita Skeeter",
+  "job": "Journalist",
+  "d": "A gossip writer with jewelled spectacles and a Quick-Quotes Quill, who is secretly an unregistered beetle Animagus."
+ },
+ {
+  "who": "Garrick Ollivander",
+  "job": "Wandmaker",
+  "d": "A soft-voiced wandmaker with pale silvery eyes who remembers every wand he has ever sold."
+ },
+ {
+  "who": "Gellert Grindelwald",
+  "job": "Dark wizard",
+  "d": "A golden-haired dark wizard who wanted wizards to rule 'for the greater good'. He stole a legendary wand from a wandmaker's workshop."
+ },
+ {
+  "who": "Aberforth Dumbledore",
+  "job": "Barman",
+  "d": "A grumpy barman who smells of goats. He resented his famous brother for years."
+ },
+ {
+  "who": "Fenrir Greyback",
+  "job": "Werewolf mercenary",
+  "d": "A savage werewolf who attacks children on purpose and wears Death Eater robes without being given the Mark."
+ },
+ {
+  "who": "Colin Creevey",
+  "job": "Student",
+  "d": "A Muggle-born first-year who followed a famous classmate with his camera, asking for signed photos."
+ },
+ {
+  "who": "Seamus Finnigan",
+  "job": "Student",
+  "d": "An Irish half-blood whose attempts at magic have a habit of blowing up in his face."
+ },
+ {
+  "who": "Lavender Brown",
+  "job": "Student",
+  "d": "A giggling Divination fan who called her sixth-year boyfriend 'Won-Won'."
+ },
+ {
+  "who": "Oliver Wood",
+  "job": "Quidditch player",
+  "d": "A burly Quidditch captain so obsessed with winning the Cup that he once had a dream about it."
+ },
+ {
+  "who": "Grawp",
+  "job": "Giant",
+  "d": "A sixteen-foot-tall half-brother brought back from the mountains and tied up in the Forbidden Forest."
+ },
+ {
+  "who": "Griphook",
+  "job": "Gringotts goblin",
+  "d": "A goblin who led a first-year down to his vault and later helped rob Gringotts, for a price."
+ },
+ {
+  "who": "Firenze",
+  "job": "Centaur, Divination teacher",
+  "d": "A palomino centaur with white-blond hair who let a human ride on his back and was cast out of his herd."
+ },
+ {
+  "who": "Regulus Black",
+  "job": "Death Eater",
+  "d": "A younger brother who joined the Death Eaters, then turned against them and stole a locket from a cave."
+ },
+ {
+  "who": "Newt Scamander",
+  "job": "Magizoologist",
+  "d": "The author of Fantastic Beasts and Where to Find Them, a set textbook at Hogwarts."
+ },
+ {
+  "who": "Gregory Goyle",
+  "job": "Student",
+  "d": "A huge, slow-witted boy with very long arms who follows a pale classmate everywhere."
+ },
+ {
+  "who": "Dean Thomas",
+  "job": "Student",
+  "d": "A tall Gryffindor who supports West Ham and is good at drawing. He was briefly on the run with a goblin."
+ },
+ {
+  "who": "Igor Karkaroff",
+  "job": "Headmaster of Durmstrang",
+  "d": "A tall, thin headmaster with a goatee who gave up names to escape Azkaban."
+ },
+ {
+  "who": "Olympe Maxime",
+  "job": "Headmistress of Beauxbatons",
+  "d": "A very large and elegant headmistress who swears she simply has big bones."
+ },
+ {
+  "who": "Rufus Scrimgeour",
+  "job": "Minister for Magic",
+  "d": "A lion-like former Auror who became Minister and wanted the 'Chosen One' as a poster boy."
+ },
+ {
+  "who": "Marvolo Gaunt",
+  "job": "None",
+  "d": "A violent, bedraggled pure-blood who lived in squalor and wore a ring he claimed came from the Peverells."
+ },
+ {
+  "who": "Merope Gaunt",
+  "job": "None",
+  "d": "A downtrodden witch who used a love potion on a Muggle neighbour and died after giving birth in an orphanage."
+ }
+]
