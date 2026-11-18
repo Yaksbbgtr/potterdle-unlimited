@@ -93,6 +93,7 @@ def tidy(s, limit=420):
 
 overrides = load("clue_overrides.json")
 BLANK = "▁▁▁"
+REMOVED_POTIONS = {"Invisibility Potion"}  # clue gave the answer away
 NOT_FAMOUS = {"Sonorous Charm", "Cribbing Spell", "Avenseguim", "Repello Inimicum"}
 
 
@@ -125,7 +126,7 @@ for s in src:
 
 potions = []
 for p in load("data/potions.json"):
-    if not p.get("description"):
+    if not p.get("description") or p["name"] in REMOVED_POTIONS:
         continue
     name, alt = p["name"], ""
     m = re.match(r"(.*?) \(Also known as (.*)\)$", name)
