@@ -124,6 +124,11 @@ def need_char(who, where):
     return full_name(who)
 
 quotes = [{"q": q["q"], "who": need_char(q["who"], "quotes"), "book": q["book"]} for q in load("quotes.source.json")]
+for q in quotes:
+    # A quote that says the speaker's own name gives the answer away.
+    parts = [w for w in re.findall(r"[A-Za-z]{3,}", q["who"]) if w.lower() not in {"the", "sir", "jr", "sr", "mrs"}]
+    if any(re.search(rf"\b{w}\b", q["q"], re.I) for w in parts):
+        sys.exit(f"quote names its own speaker ({q['who']}): {q['q']}")
 descriptions = [
     {"who": need_char(d["who"], "descriptions"), "job": d["job"], "d": d["d"], "book": chars[d["who"]]["book"]}
     for d in load("descriptions.source.json")
